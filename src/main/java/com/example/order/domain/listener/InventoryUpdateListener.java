@@ -12,7 +12,13 @@ public class InventoryUpdateListener {
     private static final Logger logger = LogManager.getLogger(InventoryUpdateListener.class);
 
     @EventListener
-    public void handleOrderCreated(OrderCreatedEvent event) {
-        logger.info("Reduciendo stock de productos: {}", event.getProducts());
+    public void onOrderCreated(OrderCreatedEvent event) {
+        reduceInventory(event);
+    }
+
+    private void reduceInventory(OrderCreatedEvent event) {
+        event.getProducts().forEach(product -> {
+            logger.info("Reduciendo stock del producto: {}", product);
+        });
     }
 }
