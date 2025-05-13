@@ -4,6 +4,7 @@ import org.springframework.context.ApplicationEvent;
 import java.util.List;
 
 public class OrderCreatedEvent extends ApplicationEvent {
+
     private final String orderId;
     private final String email;
     private final List<String> products;

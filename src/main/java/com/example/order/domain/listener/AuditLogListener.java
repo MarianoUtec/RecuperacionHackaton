@@ -12,7 +12,14 @@ public class AuditLogListener {
     private static final Logger logger = LogManager.getLogger(AuditLogListener.class);
 
     @EventListener
-    public void handleOrderCreated(OrderCreatedEvent event) {
-        logger.info("Registrando auditoría del pedido ID: {}", event.getOrderId());
+    public void onOrderCreated(OrderCreatedEvent event) {
+        logOrderAudit(event);
+    }
+
+    private void logOrderAudit(OrderCreatedEvent event) {
+        logger.info("Registrando auditoría del pedido:\n - ID: {}\n - Email: {}\n - Productos: {}",
+                event.getOrderId(),
+                event.getEmail(),
+                event.getProducts());
     }
 }
